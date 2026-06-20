@@ -19,14 +19,14 @@ A full front-end e-commerce experience for a fictional Nairobi-based fragrance s
 
 | Page | Description |
 |---|---|
-| `index.html` | Home — hero, gender/mood filters, featured products, brand story |
+| `home.html` | Home — hero, gender/mood filters, featured products, brand story |
 | `shop.html` | Full catalogue (50 products) with search, multi-filter sidebar, sort, and pagination |
 | `product.html` | Product detail — gallery, size/qty selection, scent notes, related products |
 | `scent-finder.html` | AI-powered quiz that recommends top 3 matches from the catalogue |
 | `cart.html` | Cart review with quantity controls and order summary |
 | `order.html` | Checkout — delivery/pickup selection, form validation, confirmation screen |
 | `about.html` | Brand story, values, FAQ accordion, delivery & returns policy, location |
-| `admin/index.html` | Password-protected dashboard — product CRUD + order management |
+| `admin/home.html` | Password-protected dashboard — product CRUD + order management |
 
 ---
 
@@ -144,11 +144,11 @@ This is a static site with no build process.
    ```bash
    npx serve .
    ```
-   or open `index.html` directly in a browser
+   or open `home.html` directly in a browser
 3. **Note:** `localStorage` requires serving over `http://` or `https://` (including `localhost`) — opening via `file://` directly may restrict storage in some browsers
 
 ### Admin Access
-Navigate to `/admin/index.html` directly (not linked in public navigation, by design).
+Navigate to `/admin/home.html` directly (not linked in public navigation, by design).
 Default password: `qton2025`
 > ⚠️ This is a client-side password check only, visible in source. Not secure for production — a real deployment needs server-side authentication.
 
