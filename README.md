@@ -54,7 +54,7 @@ This is a **rule-based v1** — fast, free, fully client-side, and fully explain
 ```
 qton-perfumes/
 │
-├── index.html
+├── home.html
 ├── shop.html
 ├── product.html
 ├── scent-finder.html
@@ -63,7 +63,7 @@ qton-perfumes/
 ├── about.html
 │
 ├── admin/
-│   └── index.html
+│   └── home.html
 │
 └── assets/
     ├── css/
