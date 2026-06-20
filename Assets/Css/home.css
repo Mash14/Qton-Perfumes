@@ -1,0 +1,207 @@
+/* ============================================================
+   home.css
+   PURPOSE : Styles unique to the Home page only
+   DEPENDS : global.css, components.css (loaded before this)
+   USED BY : index.html
+   ============================================================ */
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 var(--page-pad);
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, #120e00 0%, #0a0a0a 70%);
+}
+
+/* Subtle diamond crosshatch overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+       45deg, transparent, transparent 60px,
+      rgba(201,168,76,0.015) 60px, rgba(201,168,76,0.015) 61px),
+    repeating-linear-gradient(
+      -45deg, transparent, transparent 60px,
+      rgba(201,168,76,0.015) 60px, rgba(201,168,76,0.015) 61px);
+}
+
+/* Rotating conic glow ring */
+.hero__glow {
+  position: absolute;
+  right: -5%; top: 5%;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(201,168,76,0.04) 60deg,
+    rgba(201,168,76,0.09) 120deg,
+    rgba(201,168,76,0.04) 180deg,
+    transparent 240deg
+  );
+  animation: rotateSlow 18s linear infinite;
+  pointer-events: none;
+}
+
+.hero__glow::after {
+  content: '';
+  position: absolute;
+  inset: 80px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.08);
+  box-shadow:
+    0 0 60px rgba(201,168,76,0.05),
+    inset 0 0 60px rgba(201,168,76,0.03);
+}
+
+/* Inner soft pulse */
+.hero__glow2 {
+  position: absolute;
+  right: 8%; top: 18%;
+  width: 380px; height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  animation: pulse 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.hero__tag {
+  display: inline-block;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  font-size: var(--text-xs);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  margin-top: calc(var(--nav-height) + 2rem);
+  margin-bottom: 2rem;
+}
+
+.hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  margin-bottom: var(--space-md);
+}
+
+.hero__title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero__sub {
+  font-size: var(--text-md);
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: var(--space-lg);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.hero__btns {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-xl);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero__scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ── FEATURED PRODUCTS ── */
+.featured {
+  background: var(--deep);
+  padding: 80px var(--page-pad);
+}
+
+.featured__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ── STORY SECTION ── */
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  padding: 100px var(--page-pad);
+  background: var(--black);
+}
+
+.story__visual {
+  height: 400px;
+  background: linear-gradient(135deg, #1a1200, #0a0a0a);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.story__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(201,168,76,0.06), transparent 70%);
+}
+
+.story__text p {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: var(--text-base);
+  font-weight: 300;
+  margin-bottom: var(--space-md);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .story {
+    grid-template-columns: 1fr;
+  }
+
+  .story__visual { height: 250px; }
+}
+
+@media (max-width: 600px) {
+  .hero__btns    { flex-direction: column; }
+  .hero__content { padding-bottom: 120px; }
+  .hero__scroll  { bottom: 30px; }
+}

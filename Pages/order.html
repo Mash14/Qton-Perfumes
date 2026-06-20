@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ── SEO: Primary Meta ── -->
+  <title>Checkout | Qton Perfumes</title>
+  <meta name="description" content="Complete your order at Qton Perfumes. Provide your delivery details and our team will confirm pricing and delivery before payment."/>
+  <meta name="robots" content="noindex, follow"/>
+  <meta name="author" content="Qton Perfumes"/>
+  <link rel="canonical" href="https://www.qtonperfumes.com/order.html"/>
+
+  <!-- ── SEO: Open Graph ── -->
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://www.qtonperfumes.com/order.html"/>
+  <meta property="og:title"       content="Checkout | Qton Perfumes"/>
+  <meta property="og:description" content="Complete your fragrance order at Qton Perfumes."/>
+  <meta property="og:image"       content="https://www.qtonperfumes.com/assets/images/og-home.jpg"/>
+  <meta property="og:locale"      content="en_KE"/>
+  <meta property="og:site_name"   content="Qton Perfumes"/>
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'"/>
+
+  <!-- ── Stylesheets ── -->
+  <link rel="stylesheet" href="/Assets/Css/global.css"/>
+  <link rel="stylesheet" href="/Assets/Css/components.css"/>
+  <link rel="stylesheet" href="/Assets/Css/order.css"/>
+
+  <style>
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="toast__dot"></div>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="home.html" class="navbar__logo" aria-label="Qton Perfumes Home">
+      QTON<span class="navbar__logo-sub">Perfumes</span>
+    </a>
+    <ul class="navbar__links" id="navLinks" role="menubar">
+      <li role="none"><a href="home.html"  role="menuitem">Home</a></li>
+      <li role="none"><a href="shop.html"   role="menuitem">Shop</a></li>
+      <li role="none"><a href="scent-finder.html" role="menuitem" class="active">Scent Finder</a></li>
+      <li role="none"><a href="about.html"  role="menuitem">About</a></li>
+      <li role="none"><a href="about.html#contact" role="menuitem">Contact</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="btn-cart" onclick="window.location.href='cart.html'" aria-label="View cart">
+        🛍️ Cart
+        <div class="btn-cart__count" id="cartCount" aria-label="Cart items">0</div>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu"
+              aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── ORDER HEADER ── -->
+  <header class="order-header" id="orderHeader" role="banner">
+    <div class="order-header__inner">
+      <div class="t-label">Step 2 of 2</div>
+      <h1 class="order-header__title">Complete Your <em>Order</em></h1>
+      <p class="order-header__sub">Tell us where to reach you — we'll confirm the rest by phone.</p>
+
+      <!-- Step Indicator -->
+      <div class="steps" aria-label="Checkout progress">
+        <div class="step is-done">
+          <div class="step__circle" aria-hidden="true">✓</div>
+          <span class="step__label">Cart</span>
+        </div>
+        <div class="step__line is-done"></div>
+        <div class="step is-active">
+          <div class="step__circle">2</div>
+          <span class="step__label">Details</span>
+        </div>
+        <div class="step__line"></div>
+        <div class="step">
+          <div class="step__circle">3</div>
+          <span class="step__label">Confirmation</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── ORDER LAYOUT ── -->
+  <div class="order-layout" id="orderLayout">
+
+    <!-- FORM -->
+    <main>
+      <form class="form-card" onsubmit="submitOrder(event)" novalidate>
+        <h2 class="form-card__title">Your Details</h2>
+        <p class="form-card__sub">
+          We'll use this to confirm your order and arrange delivery or pickup.
+        </p>
+
+        <!-- Name -->
+        <div class="form-group">
+          <label class="form-label" for="nameInput">Full Name *</label>
+          <input class="form-input" id="nameInput" type="text"
+                 placeholder="e.g. Jane Wanjiru" required
+                 aria-required="true"/>
+          <div class="form-error" id="nameError">Please enter your full name.</div>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label class="form-label" for="phoneInput">Phone Number *</label>
+          <input class="form-input" id="phoneInput" type="tel"
+                 placeholder="e.g. 0712 345 678" required
+                 aria-required="true"/>
+          <div class="form-error" id="phoneError">Please enter a valid phone number.</div>
+        </div>
+
+        <!-- Delivery Method -->
+        <div class="form-group">
+          <label class="form-label">Delivery Method *</label>
+          <div class="delivery-toggle" role="radiogroup" aria-label="Delivery method">
+            <div class="delivery-option is-active" data-method="delivery"
+                 onclick="setDeliveryMethod('delivery')"
+                 role="radio" aria-checked="true" tabindex="0">
+              <div class="delivery-option__check" aria-hidden="true">✓</div>
+              <div class="delivery-option__icon" aria-hidden="true">🚚</div>
+              <div class="delivery-option__title">Deliver to Me</div>
+              <div class="delivery-option__desc">
+                We'll call to confirm delivery pricing based on your location.
+              </div>
+            </div>
+            <div class="delivery-option" data-method="pickup"
+                 onclick="setDeliveryMethod('pickup')"
+                 role="radio" aria-checked="false" tabindex="0">
+              <div class="delivery-option__check" aria-hidden="true">✓</div>
+              <div class="delivery-option__icon" aria-hidden="true">🏪</div>
+              <div class="delivery-option__title">Pickup In-Store</div>
+              <div class="delivery-option__desc">
+                Collect at our Nairobi CBD store. No delivery fee.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location (shown only for delivery) -->
+        <div class="form-group location-fields" id="locationFields">
+          <label class="form-label" for="locationInput">Delivery Location *</label>
+          <input class="form-input" id="locationInput" type="text"
+                 placeholder="e.g. Kilimani, Nairobi" required
+                 aria-required="true"/>
+          <div class="form-error" id="locationError">Please enter your delivery location.</div>
+        </div>
+
+        <!-- Notes -->
+        <div class="form-group">
+          <label class="form-label" for="notesInput">Order Notes (Optional)</label>
+          <textarea class="form-textarea" id="notesInput"
+                    placeholder="Any special instructions for your order…"
+                    aria-label="Optional order notes"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full"
+                style="margin-top:0.5rem" aria-label="Place order">
+          Place Order
+        </button>
+      </form>
+    </main>
+
+    <!-- ORDER REVIEW -->
+    <aside class="order-review" aria-label="Order review">
+      <h2 class="order-review__title">Order Review</h2>
+      <div id="reviewItemsList" aria-label="Items in your order"></div>
+
+      <div class="review-totals">
+        <div class="review-row">
+          <span class="review-row__label">Items</span>
+          <span class="review-row__val" id="reviewCount">0 items</span>
+        </div>
+        <div class="review-row">
+          <span class="review-row__label">Subtotal</span>
+          <span class="review-row__val" id="reviewSubtotal">KES 0</span>
+        </div>
+        <div class="review-row">
+          <span class="review-row__label">Delivery</span>
+          <span class="review-row__val" id="reviewDelivery">Confirmed by phone</span>
+        </div>
+        <div class="review-row review-row--total">
+          <span class="review-row__label">Total</span>
+          <span class="review-row__val" id="reviewTotal">KES 0</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+      <div>
+        <span class="footer__brand-name">
+          QTON<span class="footer__brand-sub">Perfumes</span>
+        </span>
+        <p class="footer__brand-desc">
+          Nairobi's home for authentic fragrances — luxury and everyday, for every person.
+        </p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Shop</div>
+        <ul>
+          <li><a href="shop.html">New Arrivals</a></li>
+          <li><a href="shop.html?gender=Men">Men's</a></li>
+          <li><a href="shop.html?gender=Women">Women's</a></li>
+          <li><a href="shop.html?gender=Unisex">Unisex</a></li>
+          <li><a href="shop.html?badge=Luxury">Luxury</a></li>
+          <li><a href="shop.html?mood=Gift">Gifts</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Help</div>
+        <ul>
+          <li><a href="shop.html">How to Order</a></li>
+          <li><a href="about.html#delivery">Delivery Info</a></li>
+          <li><a href="about.html#returns">Returns</a></li>
+          <li><a href="about.html#faq">FAQ</a></li>
+          <li><a href="about.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Find Us</div>
+        <address style="font-style:normal">
+          <p>Nairobi CBD<br/>Nairobi, Kenya</p><br/>
+          <p>Mon – Sat<br/>8:00 AM – 8:00 PM</p><br/>
+          <p class="t-gold">+254 700 000 000</p>
+        </address>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 Qton Perfumes. All rights reserved.</p>
+      <div class="social-links" aria-label="Social media links">
+        <a class="social-link" href="https://instagram.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a class="social-link" href="https://facebook.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        <a class="social-link" href="https://tiktok.com/@qtonperfumes"
+           target="_blank" rel="noopener" aria-label="TikTok">TK</a>
+        <a class="social-link" href="https://x.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WHATSAPP FAB ── -->
+  <a href="https://wa.me/254700000000?text=Hi%20Qton%20Perfumes!%20I%27d%20like%20to%20inquire%20about%20a%20fragrance."
+     target="_blank" rel="noopener"
+     class="wa-fab" aria-label="Chat with us on WhatsApp">💬</a>
+  <div class="wa-tooltip" aria-hidden="true">Chat with us on WhatsApp</div>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="/Assets/Js/products.js"></script>
+  <script src="/Assets/Js/cart.js"></script>
+  <script src="/Assets/Js/global.js"></script>
+  <script src="/Assets/Js/order.js"></script>
+
+</body>
+</html>

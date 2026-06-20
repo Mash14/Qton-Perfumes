@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ── SEO: Primary Meta ── -->
+  <title>AI Scent Finder | Find Your Perfect Fragrance | Qton Perfumes</title>
+  <meta name="description" content="Can't smell perfume online? Take our quick AI-powered Scent Finder quiz and discover the fragrances perfectly matched to your style, mood and budget."/>
+  <meta name="keywords" content="perfume quiz, scent finder, find my perfume, fragrance recommendation Kenya, AI perfume matching, which perfume suits me"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://www.qtonperfumes.com/scent-finder.html"/>
+
+  <!-- ── SEO: Open Graph ── -->
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://www.qtonperfumes.com/scent-finder.html"/>
+  <meta property="og:title"       content="AI Scent Finder | Qton Perfumes"/>
+  <meta property="og:description" content="Take our quick quiz and discover fragrances matched to your style and mood."/>
+  <meta property="og:image"       content="https://www.qtonperfumes.com/assets/images/og-home.jpg"/>
+  <meta property="og:locale"      content="en_KE"/>
+  <meta property="og:site_name"   content="Qton Perfumes"/>
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'"/>
+
+  <!-- ── Stylesheets ── -->
+  <link rel="stylesheet" href="/Assets/Css/global.css"/>
+  <link rel="stylesheet" href="/Assets/Css/components.css"/>
+  <link rel="stylesheet" href="/Assets/Css/scent-finder.css"/>
+</head>
+<body>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="toast__dot"></div>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="home.html" class="navbar__logo" aria-label="Qton Perfumes Home">
+      QTON<span class="navbar__logo-sub">Perfumes</span>
+    </a>
+    <ul class="navbar__links" id="navLinks" role="menubar">
+      <li role="none"><a href="home.html"  role="menuitem">Home</a></li>
+      <li role="none"><a href="shop.html"   role="menuitem">Shop</a></li>
+      <li role="none"><a href="scent-finder.html" role="menuitem" class="active">Scent Finder</a></li>
+      <li role="none"><a href="about.html"  role="menuitem">About</a></li>
+      <li role="none"><a href="about.html#contact" role="menuitem">Contact</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="btn-cart" onclick="window.location.href='cart.html'" aria-label="View cart">
+        🛍️ Cart
+        <div class="btn-cart__count" id="cartCount" aria-label="Cart items">0</div>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu"
+              aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── FINDER WRAPPER ── -->
+  <div class="finder">
+    <div class="finder__inner" id="finderInner">
+
+      <!-- ══════ INTRO SCREEN ══════ -->
+      <div class="finder-screen" id="introScreen">
+        <div class="finder-intro">
+          <div class="finder-intro__icon" aria-hidden="true">✨</div>
+          <h1 class="finder-intro__title">
+            Find Your <em>Signature</em><br/>Scent in 60 Seconds
+          </h1>
+          <p class="finder-intro__sub">
+            Can't smell perfume through a screen? No problem. Answer a few
+            quick questions and we'll match you with fragrances from our
+            collection that truly fit your style, mood and budget.
+          </p>
+          <button class="btn btn--primary" onclick="startQuiz()" aria-label="Start the scent finder quiz">
+            Start the Quiz →
+          </button>
+          <div class="finder-intro__meta">
+            <span>⏱️ Takes 60 seconds</span>
+            <span>🎯 5 quick questions</span>
+            <span>🌸 Personalized matches</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════ QUIZ SCREEN ══════ -->
+      <div class="finder-screen" id="quizScreen" style="display:none">
+
+        <div class="finder-progress">
+          <div class="finder-progress__track">
+            <div class="finder-progress__fill" id="progressFill" style="width:0%"></div>
+          </div>
+          <div class="finder-progress__label">
+            <span id="progressCurrent">Question 1 of 5</span>
+            <span id="progressPct">0%</span>
+          </div>
+        </div>
+
+        <div class="finder-question">
+          <h2 class="finder-question__title" id="questionTitle"></h2>
+          <p class="finder-question__sub" id="questionSub"></p>
+          <div class="finder-options" id="optionsGrid" role="group" aria-label="Quiz options"></div>
+        </div>
+
+        <div class="finder-nav">
+          <button class="finder-nav__back" id="navBack" onclick="goBack()" aria-label="Previous question">
+            ← Back
+          </button>
+          <button class="finder-nav__next" id="navNext" onclick="goNext()" disabled aria-label="Next question">
+            Next →
+          </button>
+        </div>
+      </div>
+
+      <!-- ══════ LOADING SCREEN ══════ -->
+      <div class="finder-screen" id="loadingScreen" style="display:none">
+        <div class="finder-loading">
+          <div class="finder-loading__icon" aria-hidden="true">✨</div>
+          <div class="finder-loading__text">Finding your perfect match…</div>
+          <p class="finder-loading__sub">Analyzing your preferences against our collection</p>
+        </div>
+      </div>
+
+      <!-- ══════ RESULTS SCREEN ══════ -->
+      <div class="finder-screen" id="resultsScreen" style="display:none">
+        <div class="finder-results">
+          <div class="finder-results__header">
+            <div class="t-label">Your Matches</div>
+            <h2 class="finder-results__title" style="margin-top:0.75rem">
+              We Found Your <em>Signature</em> Scents
+            </h2>
+            <p class="finder-results__sub">
+              Based on your answers, here are our top picks for you.
+            </p>
+          </div>
+
+          <div class="match-grid" id="matchGrid" role="list" aria-label="Matched fragrances"></div>
+
+          <div class="finder-results__actions">
+            <button class="btn btn--outline" onclick="retakeQuiz()">Retake Quiz</button>
+            <a href="shop.html" class="btn btn--primary">Browse Full Collection</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+      <div>
+        <span class="footer__brand-name">
+          QTON<span class="footer__brand-sub">Perfumes</span>
+        </span>
+        <p class="footer__brand-desc">
+          Nairobi's home for authentic fragrances — luxury and everyday, for every person.
+        </p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Shop</div>
+        <ul>
+          <li><a href="shop.html">New Arrivals</a></li>
+          <li><a href="shop.html?gender=Men">Men's</a></li>
+          <li><a href="shop.html?gender=Women">Women's</a></li>
+          <li><a href="shop.html?gender=Unisex">Unisex</a></li>
+          <li><a href="shop.html?badge=Luxury">Luxury</a></li>
+          <li><a href="scent-finder.html">Scent Finder</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Help</div>
+        <ul>
+          <li><a href="shop.html">How to Order</a></li>
+          <li><a href="about.html#delivery">Delivery Info</a></li>
+          <li><a href="about.html#returns">Returns</a></li>
+          <li><a href="about.html#faq">FAQ</a></li>
+          <li><a href="about.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Find Us</div>
+        <address style="font-style:normal">
+          <p>Nairobi CBD<br/>Nairobi, Kenya</p><br/>
+          <p>Mon – Sat<br/>8:00 AM – 8:00 PM</p><br/>
+          <p class="t-gold">+254 700 000 000</p>
+        </address>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 Qton Perfumes. All rights reserved.</p>
+      <div class="social-links" aria-label="Social media links">
+        <a class="social-link" href="https://instagram.com/qtonperfumes" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a class="social-link" href="https://facebook.com/qtonperfumes" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        <a class="social-link" href="https://tiktok.com/@qtonperfumes" target="_blank" rel="noopener" aria-label="TikTok">TK</a>
+        <a class="social-link" href="https://x.com/qtonperfumes" target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WHATSAPP FAB ── -->
+  <a href="https://wa.me/254700000000?text=Hi%20Qton%20Perfumes!%20I%27d%20like%20to%20inquire%20about%20a%20fragrance."
+     target="_blank" rel="noopener" class="wa-fab" aria-label="Chat with us on WhatsApp">💬</a>
+  <div class="wa-tooltip" aria-hidden="true">Chat with us on WhatsApp</div>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="/Assets/Js/products.js"></script>
+  <script src="/Assets/Js/cart.js"></script>
+  <script src="/Assets/Js/global.js"></script>
+  <script src="/Assets/Js/scent-finder.js"></script>
+
+</body>
+</html>

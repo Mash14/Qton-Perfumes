@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ── SEO: Primary Meta ── -->
+  <title>About Us | Qton Perfumes Nairobi Kenya</title>
+  <meta name="description" content="Learn about Qton Perfumes — Nairobi CBD's trusted fragrance store. Our story, values, delivery policy, returns, and frequently asked questions."/>
+  <meta name="keywords" content="about Qton Perfumes, perfume store Nairobi CBD, authentic fragrances Kenya, perfume delivery Kenya, perfume returns policy Kenya"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="Qton Perfumes"/>
+  <link rel="canonical" href="https://www.qtonperfumes.com/about.html"/>
+
+  <!-- ── SEO: Open Graph ── -->
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://www.qtonperfumes.com/about.html"/>
+  <meta property="og:title"       content="About Us | Qton Perfumes Nairobi"/>
+  <meta property="og:description" content="Nairobi CBD's trusted fragrance store. Our story, values, and commitment to authentic perfumes."/>
+  <meta property="og:image"       content="https://www.qtonperfumes.com/assets/images/og-about.jpg"/>
+  <meta property="og:locale"      content="en_KE"/>
+  <meta property="og:site_name"   content="Qton Perfumes"/>
+
+  <!-- ── SEO: Twitter Card ── -->
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:title"       content="About Us | Qton Perfumes Nairobi"/>
+  <meta name="twitter:description" content="Nairobi CBD's trusted fragrance store. Our story and values."/>
+  <meta name="twitter:image"       content="https://www.qtonperfumes.com/assets/images/og-about.jpg"/>
+
+  <!-- ── SEO: Structured Data — AboutPage + FAQPage (rich results in Google & AI search) ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Qton Perfumes",
+    "url": "https://www.qtonperfumes.com/about.html",
+    "mainEntity": {
+      "@type": "Store",
+      "name": "Qton Perfumes",
+      "foundingLocation": "Nairobi CBD, Kenya",
+      "description": "Qton Perfumes is a Nairobi-based fragrance store offering authentic luxury and everyday perfumes for men, women and unisex."
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are Qton Perfumes fragrances 100% authentic?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every fragrance we sell is sourced directly from trusted distributors and is 100% authentic. We do not sell counterfeit or imitation perfumes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does delivery work at Qton Perfumes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "After placing an order, our team calls you to confirm the final price including delivery, based on your location in Nairobi or elsewhere in Kenya, before any payment is made."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I pay via M-Pesa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we accept M-Pesa payments as well as cash on delivery or in-store at our Nairobi CBD location."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Qton Perfumes' return policy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unopened items can be returned or exchanged within 7 days of delivery. Contact us on WhatsApp to arrange a return."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is Qton Perfumes located?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our physical store is located in Nairobi CBD, Kenya. We are open Monday to Saturday, 8:00 AM to 8:00 PM."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'"/>
+
+  <!-- ── Stylesheets ── -->
+  <link rel="stylesheet" href="/Assets/Css/global.css"/>
+  <link rel="stylesheet" href="/Assets/Css/components.css"/>
+  <link rel="stylesheet" href="/Assets/Css/about.css"/>
+</head>
+<body>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="toast__dot"></div>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="home.html" class="navbar__logo" aria-label="Qton Perfumes Home">
+      QTON<span class="navbar__logo-sub">Perfumes</span>
+    </a>
+    <ul class="navbar__links" id="navLinks" role="menubar">
+      <li role="none"><a href="home.html"  role="menuitem">Home</a></li>
+      <li role="none"><a href="shop.html"   role="menuitem">Shop</a></li>
+      <li role="none"><a href="scent-finder.html" role="menuitem" class="active">Scent Finder</a></li>
+      <li role="none"><a href="about.html"  role="menuitem">About</a></li>
+      <li role="none"><a href="about.html#contact" role="menuitem">Contact</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="btn-cart" onclick="window.location.href='cart.html'" aria-label="View cart">
+        🛍️ Cart
+        <div class="btn-cart__count" id="cartCount" aria-label="Cart items">0</div>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu"
+              aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── ABOUT HERO ── -->
+  <header class="about-hero" role="banner">
+    <div class="about-hero__content">
+      <div class="t-label">Our Story</div>
+      <h1 class="about-hero__title">
+        Fragrance Should Never<br/>Be a <em>Privilege</em>
+      </h1>
+      <p class="about-hero__sub">
+        Qton Perfumes was born in the heart of Nairobi CBD with a simple belief —
+        everyone deserves access to authentic, beautiful fragrance, whether it's
+        a luxury exclusive or an everyday favourite.
+      </p>
+    </div>
+  </header>
+
+  <!-- ── STORY SPLIT ── -->
+  <section class="about-story" aria-label="Our story">
+    <div class="about-story__visual" aria-hidden="true">🏺</div>
+    <div class="about-story__text">
+      <div class="t-label">How It Started</div>
+      <h2 class="t-title" style="margin-top:0.75rem">
+        Built From the Streets<br/>of Nairobi CBD
+      </h2>
+      <div class="divider" aria-hidden="true"></div>
+      <p>
+        Qton Perfumes started with a single idea: Nairobi deserved a fragrance
+        store that didn't compromise on authenticity, regardless of budget.
+        We stock everything from rare luxury exclusives to beloved everyday
+        scents — for men, women, and everyone in between.
+      </p>
+      <p>
+        What we don't have in stock, we'll source for you. Every bottle that
+        leaves our store — or arrives at your door — is 100% genuine, sourced
+        directly from trusted distributors.
+      </p>
+      <p>
+        Whether you're dressing for a boardroom, a first date, or simply
+        treating yourself, we believe there's a fragrance that speaks for you —
+        and we're here to help you find it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── STATS BAR ── -->
+  <section class="stats" aria-label="Qton Perfumes in numbers">
+    <div class="stats__grid">
+      <div class="stat">
+        <div class="stat__number" data-target="50" data-suffix="+">0</div>
+        <div class="stat__label">Fragrances</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number" data-target="30" data-suffix="+">0</div>
+        <div class="stat__label">Brands</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number" data-target="100" data-suffix="%">0</div>
+        <div class="stat__label">Authentic</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number" data-target="6" data-suffix=" Days">0</div>
+        <div class="stat__label">A Week Open</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VALUES ── -->
+  <section class="values" aria-label="Our values">
+    <div class="t-label">What We Stand For</div>
+    <h2 class="t-title" style="margin-top:0.75rem">Our Core Values</h2>
+    <div class="values__grid">
+      <div class="value-card">
+        <div class="value-card__icon" aria-hidden="true">✅</div>
+        <h3 class="value-card__title">Authenticity</h3>
+        <p class="value-card__desc">
+          Every fragrance we sell is 100% genuine — no imitations, no exceptions.
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-card__icon" aria-hidden="true">🤝</div>
+        <h3 class="value-card__title">Honesty</h3>
+        <p class="value-card__desc">
+          Clear pricing, confirmed before payment — no hidden charges, ever.
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-card__icon" aria-hidden="true">🌍</div>
+        <h3 class="value-card__title">Accessibility</h3>
+        <p class="value-card__desc">
+          Luxury and everyday fragrances, for every person and every budget.
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-card__icon" aria-hidden="true">💬</div>
+        <h3 class="value-card__title">Personal Service</h3>
+        <p class="value-card__desc">
+          Real conversations, real recommendations — never a robotic checkout.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DELIVERY & RETURNS ── -->
+  <section class="policies" id="delivery" aria-label="Delivery and returns policy">
+    <div class="t-label">Good to Know</div>
+    <h2 class="t-title" style="margin-top:0.75rem">Delivery &amp; Returns</h2>
+    <div class="policies__grid">
+
+      <div class="policy-block">
+        <h3 class="policy-block__title">🚚 Delivery</h3>
+        <div class="policy-row">
+          <div class="policy-row__icon" aria-hidden="true">📍</div>
+          <div>
+            <div class="policy-row__title">Nairobi & Beyond</div>
+            <div class="policy-row__desc">
+              We deliver across Nairobi and the rest of Kenya via trusted courier partners.
+            </div>
+          </div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-row__icon" aria-hidden="true">📞</div>
+          <div>
+            <div class="policy-row__title">Price Confirmed by Phone</div>
+            <div class="policy-row__desc">
+              After checkout, our team calls you to confirm the total cost
+              including delivery — before any payment is made.
+            </div>
+          </div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-row__icon" aria-hidden="true">💳</div>
+          <div>
+            <div class="policy-row__title">Payment Options</div>
+            <div class="policy-row__desc">
+              We accept M-Pesa and cash — on delivery or in-store.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-block" id="returns">
+        <h3 class="policy-block__title">🔄 Returns</h3>
+        <div class="policy-row">
+          <div class="policy-row__icon" aria-hidden="true">📦</div>
+          <div>
+            <div class="policy-row__title">7-Day Return Window</div>
+            <div class="policy-row__desc">
+              Unopened items can be returned or exchanged within 7 days of delivery.
+            </div>
+          </div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-row__icon" aria-hidden="true">💬</div>
+          <div>
+            <div class="policy-row__title">How to Return</div>
+            <div class="policy-row__desc">
+              Message us on WhatsApp with your order number to arrange a return or exchange.
+            </div>
+          </div>
+        </div>
+        <div class="policy-row">
+          <div class="policy-row__icon" aria-hidden="true">✅</div>
+          <div>
+            <div class="policy-row__title">Quality Guarantee</div>
+            <div class="policy-row__desc">
+              If a fragrance arrives damaged or incorrect, we'll replace it at no extra cost.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq" id="faq" aria-label="Frequently asked questions">
+    <div class="t-label">Questions</div>
+    <h2 class="t-title" style="margin-top:0.75rem">Frequently Asked Questions</h2>
+
+    <div class="faq__list">
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)" aria-expanded="false">
+          Are Qton Perfumes fragrances 100% authentic?
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Yes. Every fragrance we sell is sourced directly from trusted
+            distributors and is 100% authentic. We do not sell counterfeit
+            or imitation perfumes — ever.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)" aria-expanded="false">
+          How does delivery work?
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            After you place an order, our team calls you to confirm the final
+            price including delivery, based on your location in Nairobi or
+            elsewhere in Kenya — before any payment is made.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)" aria-expanded="false">
+          Can I pay via M-Pesa?
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Yes, we accept M-Pesa payments as well as cash — on delivery or in-store
+            at our Nairobi CBD location.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)" aria-expanded="false">
+          What is your return policy?
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Unopened items can be returned or exchanged within 7 days of delivery.
+            Contact us on WhatsApp with your order number to arrange a return.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)" aria-expanded="false">
+          Do you have a physical store?
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Yes — visit us in Nairobi CBD, open Monday to Saturday,
+            8:00 AM to 8:00 PM. Smell before you decide, or simply collect
+            an order you placed online.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-item__question" onclick="toggleFaq(this)" aria-expanded="false">
+          What if I don't see the perfume I want in stock?
+          <span class="faq-item__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-item__answer">
+          <div class="faq-item__answer-inner">
+            Message us on WhatsApp — if we don't have it in stock, we'll do
+            our best to source it for you.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LOCATION ── -->
+  <section class="location" id="contact" aria-label="Our location and contact details">
+    <div class="t-label">Visit Us</div>
+    <h2 class="t-title" style="margin-top:0.75rem">Find Us in Nairobi CBD</h2>
+    <div class="location__grid">
+      <div class="location__visual" aria-hidden="true">📍</div>
+      <div class="location__details">
+        <div class="location-row">
+          <div class="location-row__icon" aria-hidden="true">📍</div>
+          <div>
+            <div class="location-row__title">Address</div>
+            <div class="location-row__desc">Nairobi CBD, Nairobi, Kenya</div>
+          </div>
+        </div>
+        <div class="location-row">
+          <div class="location-row__icon" aria-hidden="true">🕐</div>
+          <div>
+            <div class="location-row__title">Opening Hours</div>
+            <div class="location-row__desc">Monday – Saturday, 8:00 AM – 8:00 PM</div>
+          </div>
+        </div>
+        <div class="location-row">
+          <div class="location-row__icon" aria-hidden="true">📞</div>
+          <div>
+            <div class="location-row__title">Phone & WhatsApp</div>
+            <div class="location-row__desc">+254 700 000 000</div>
+          </div>
+        </div>
+        <div class="location-row">
+          <div class="location-row__icon" aria-hidden="true">✉️</div>
+          <div>
+            <div class="location-row__title">Email</div>
+            <div class="location-row__desc">hello@qtonperfumes.com</div>
+          </div>
+        </div>
+        <a href="https://wa.me/254700000000?text=Hi%20Qton%20Perfumes!%20I%27d%20like%20to%20get%20in%20touch."
+           target="_blank" rel="noopener" class="btn btn--primary" style="margin-top:0.5rem">
+          💬 Chat With Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+      <div>
+        <span class="footer__brand-name">
+          QTON<span class="footer__brand-sub">Perfumes</span>
+        </span>
+        <p class="footer__brand-desc">
+          Nairobi's home for authentic fragrances — luxury and everyday, for every person.
+        </p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Shop</div>
+        <ul>
+          <li><a href="shop.html">New Arrivals</a></li>
+          <li><a href="shop.html?gender=Men">Men's</a></li>
+          <li><a href="shop.html?gender=Women">Women's</a></li>
+          <li><a href="shop.html?gender=Unisex">Unisex</a></li>
+          <li><a href="shop.html?badge=Luxury">Luxury</a></li>
+          <li><a href="shop.html?mood=Gift">Gifts</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Help</div>
+        <ul>
+          <li><a href="shop.html">How to Order</a></li>
+          <li><a href="about.html#delivery">Delivery Info</a></li>
+          <li><a href="about.html#returns">Returns</a></li>
+          <li><a href="about.html#faq">FAQ</a></li>
+          <li><a href="about.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Find Us</div>
+        <address style="font-style:normal">
+          <p>Nairobi CBD<br/>Nairobi, Kenya</p><br/>
+          <p>Mon – Sat<br/>8:00 AM – 8:00 PM</p><br/>
+          <p class="t-gold">+254 700 000 000</p>
+        </address>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 Qton Perfumes. All rights reserved.</p>
+      <div class="social-links" aria-label="Social media links">
+        <a class="social-link" href="https://instagram.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a class="social-link" href="https://facebook.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        <a class="social-link" href="https://tiktok.com/@qtonperfumes"
+           target="_blank" rel="noopener" aria-label="TikTok">TK</a>
+        <a class="social-link" href="https://x.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WHATSAPP FAB ── -->
+  <a href="https://wa.me/254700000000?text=Hi%20Qton%20Perfumes!%20I%27d%20like%20to%20inquire%20about%20a%20fragrance."
+     target="_blank" rel="noopener"
+     class="wa-fab" aria-label="Chat with us on WhatsApp">💬</a>
+  <div class="wa-tooltip" aria-hidden="true">Chat with us on WhatsApp</div>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="/Assets/Js/products.js"></script>
+  <script src="/Assets/Js/cart.js"></script>
+  <script src="/Assets/Js/global.js"></script>
+  <script src="/Assets/Js/about.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ── SEO: Primary Meta ── -->
+  <title>Shop Perfumes | Qton Perfumes Nairobi Kenya</title>
+  <meta name="description" content="Browse 50+ authentic fragrances at Qton Perfumes. Shop by brand, gender, scent family or occasion. Luxury and everyday perfumes delivered across Kenya."/>
+  <meta name="keywords" content="buy perfume online Kenya, perfume shop Nairobi, Chanel perfume Kenya, Dior fragrance Nairobi, Tom Ford Kenya, luxury perfume online, men perfume Kenya, women perfume Nairobi"/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="author" content="Qton Perfumes"/>
+  <link rel="canonical" href="https://www.qtonperfumes.com/shop.html"/>
+
+  <!-- ── SEO: Open Graph ── -->
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://www.qtonperfumes.com/shop.html"/>
+  <meta property="og:title"       content="Shop Perfumes | Qton Perfumes Nairobi"/>
+  <meta property="og:description" content="Browse 50+ authentic fragrances. Luxury and everyday perfumes for men, women and unisex. Delivered across Kenya."/>
+  <meta property="og:image"       content="https://www.qtonperfumes.com/assets/images/og-shop.jpg"/>
+  <meta property="og:locale"      content="en_KE"/>
+  <meta property="og:site_name"   content="Qton Perfumes"/>
+
+  <!-- ── SEO: Twitter Card ── -->
+  <meta name="twitter:card"        content="summary_large_image"/>
+  <meta name="twitter:title"       content="Shop Perfumes | Qton Perfumes Nairobi"/>
+  <meta name="twitter:description" content="Browse 50+ authentic fragrances. Delivered across Kenya."/>
+  <meta name="twitter:image"       content="https://www.qtonperfumes.com/assets/images/og-shop.jpg"/>
+
+  <!-- ── SEO: Structured Data ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Shop Perfumes – Qton Perfumes",
+    "description": "Browse over 50 authentic fragrances at Qton Perfumes, Nairobi's premier fragrance store.",
+    "url": "https://www.qtonperfumes.com/shop.html",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://www.qtonperfumes.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Shop",  "item": "https://www.qtonperfumes.com/shop.html" }
+      ]
+    },
+    "provider": {
+      "@type": "Store",
+      "name": "Qton Perfumes",
+      "url": "https://www.qtonperfumes.com"
+    }
+  }
+  </script>
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'"/>
+
+  <!-- ── Stylesheets ── -->
+  <link rel="stylesheet" href="/Assets/Css/global.css"/>
+  <link rel="stylesheet" href="/Assets/Css/components.css"/>
+  <link rel="stylesheet" href="/Assets/Css/shop.css"/>
+</head>
+<body>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="toast__dot"></div>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="home.html" class="navbar__logo" aria-label="Qton Perfumes Home">
+      QTON<span class="navbar__logo-sub">Perfumes</span>
+    </a>
+    <ul class="navbar__links" id="navLinks" role="menubar">
+      <li role="none"><a href="home.html"  role="menuitem">Home</a></li>
+      <li role="none"><a href="shop.html"   role="menuitem">Shop</a></li>
+      <li role="none"><a href="scent-finder.html" role="menuitem" class="active">Scent Finder</a></li>
+      <li role="none"><a href="about.html"  role="menuitem">About</a></li>
+      <li role="none"><a href="about.html#contact" role="menuitem">Contact</a></li>
+    </ul>
+    <div class="navbar__right">
+      <button class="btn-cart" onclick="window.location.href='cart.html'" aria-label="View cart">
+        🛍️ Cart
+        <div class="btn-cart__count" id="cartCount" aria-label="Cart items">0</div>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu"
+              aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── SHOP BANNER ── -->
+  <header class="shop-banner" role="banner">
+    <div class="shop-banner__inner">
+      <div class="t-label">Our Collection</div>
+      <h1 class="shop-banner__title">Every Scent Tells<br/>a <em>Story</em></h1>
+      <p class="shop-banner__sub">
+        Browse our full collection of authentic fragrances — from everyday
+        favourites to rare luxury exclusives.
+      </p>
+      <!-- Search -->
+      <div class="search-wrap" role="search">
+        <label for="searchInput" class="visually-hidden">Search fragrances</label>
+        <input
+          class="search-input"
+          id="searchInput"
+          type="search"
+          placeholder="Search by name, brand or scent…"
+          autocomplete="off"
+          oninput="handleSearch(this.value)"
+          aria-label="Search fragrances"/>
+        <span class="search-icon" id="searchIcon" aria-hidden="true">🔍</span>
+        <button class="search-clear" id="searchClear"
+                onclick="clearSearch()"
+                aria-label="Clear search">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── MOBILE FILTER BUTTON ── -->
+  <div style="padding:1.5rem var(--page-pad) 0;">
+    <button class="mobile-filter-btn" onclick="openDrawer()"
+            aria-label="Open filters" aria-controls="drawer">
+      ⚙️ &nbsp;Filter &amp; Sort
+    </button>
+  </div>
+
+  <!-- ── SHOP LAYOUT ── -->
+  <div class="shop-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Filter products">
+      <div class="sidebar__header">
+        <span class="sidebar__title">Filters</span>
+        <button class="sidebar__reset" onclick="resetAll()"
+                aria-label="Clear all filters">Clear All</button>
+      </div>
+
+      <!-- Gender -->
+      <div class="filter-group" id="fg-gender">
+        <div class="filter-group__label" onclick="toggleGroup('fg-gender')"
+             role="button" aria-expanded="true" tabindex="0">
+          Gender <span class="filter-group__arrow" aria-hidden="true">▾</span>
+        </div>
+        <div class="filter-group__body">
+          <div class="filter-opts" id="opts-gender" role="group" aria-label="Gender filters"></div>
+        </div>
+      </div>
+
+      <!-- Scent Family -->
+      <div class="filter-group" id="fg-scent">
+        <div class="filter-group__label" onclick="toggleGroup('fg-scent')"
+             role="button" aria-expanded="true" tabindex="0">
+          Scent Family <span class="filter-group__arrow" aria-hidden="true">▾</span>
+        </div>
+        <div class="filter-group__body">
+          <div class="filter-opts" id="opts-scent" role="group" aria-label="Scent family filters"></div>
+        </div>
+      </div>
+
+      <!-- Mood -->
+      <div class="filter-group" id="fg-mood">
+        <div class="filter-group__label" onclick="toggleGroup('fg-mood')"
+             role="button" aria-expanded="true" tabindex="0">
+          Occasion / Mood <span class="filter-group__arrow" aria-hidden="true">▾</span>
+        </div>
+        <div class="filter-group__body">
+          <div class="filter-opts" id="opts-mood" role="group" aria-label="Mood filters"></div>
+        </div>
+      </div>
+
+      <!-- Brand -->
+      <div class="filter-group" id="fg-brand">
+        <div class="filter-group__label" onclick="toggleGroup('fg-brand')"
+             role="button" aria-expanded="true" tabindex="0">
+          Brand <span class="filter-group__arrow" aria-hidden="true">▾</span>
+        </div>
+        <div class="filter-group__body">
+          <div class="filter-opts" id="opts-brand" role="group" aria-label="Brand filters"></div>
+        </div>
+      </div>
+
+      <!-- Price Range -->
+      <div class="filter-group" id="fg-price">
+        <div class="filter-group__label" onclick="toggleGroup('fg-price')"
+             role="button" aria-expanded="true" tabindex="0">
+          Price Range (KES) <span class="filter-group__arrow" aria-hidden="true">▾</span>
+        </div>
+        <div class="filter-group__body">
+          <div class="price-range">
+            <label for="priceMin" class="visually-hidden">Minimum price</label>
+            <input class="price-input" id="priceMin" type="number"
+                   placeholder="Min" min="0" aria-label="Minimum price in KES"/>
+            <span class="price-sep" aria-hidden="true">—</span>
+            <label for="priceMax" class="visually-hidden">Maximum price</label>
+            <input class="price-input" id="priceMax" type="number"
+                   placeholder="Max" min="0" aria-label="Maximum price in KES"/>
+          </div>
+          <button class="price-apply" onclick="applyPrice()"
+                  aria-label="Apply price range filter">Apply</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main aria-label="Product listings">
+
+      <!-- Toolbar -->
+      <div class="shop-toolbar">
+        <div class="shop-count" id="shopCount" aria-live="polite" aria-atomic="true"></div>
+        <div class="sort-wrap">
+          <label for="sortSelect" class="sort-label">Sort</label>
+          <select class="sort-select" id="sortSelect"
+                  onchange="applySort()" aria-label="Sort products">
+            <option value="default">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="az">Name: A – Z</option>
+            <option value="za">Name: Z – A</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Active Filter Chips -->
+      <div class="active-filters" id="activeFilters"
+           role="region" aria-label="Active filters" aria-live="polite"></div>
+
+      <!-- Product Grid -->
+      <div class="shop-grid" id="shopGrid"
+           role="list" aria-label="Perfume products"></div>
+
+      <!-- Pagination -->
+      <nav class="pagination" id="pagination"
+           role="navigation" aria-label="Product pages"></nav>
+
+    </main>
+  </div>
+
+  <!-- ── MOBILE DRAWER ── -->
+  <div class="sidebar-overlay" id="overlay"
+       onclick="closeDrawer()" aria-hidden="true"></div>
+  <div class="sidebar-drawer" id="drawer"
+       role="dialog" aria-modal="true" aria-label="Filter products">
+    <button class="drawer-close" onclick="closeDrawer()"
+            aria-label="Close filters">✕</button>
+    <div id="drawerContent"></div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+      <div>
+        <span class="footer__brand-name">
+          QTON<span class="footer__brand-sub">Perfumes</span>
+        </span>
+        <p class="footer__brand-desc">
+          Nairobi's home for authentic fragrances — luxury and everyday, for every person.
+        </p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Shop</div>
+        <ul>
+          <li><a href="shop.html">New Arrivals</a></li>
+          <li><a href="shop.html?gender=Men">Men's</a></li>
+          <li><a href="shop.html?gender=Women">Women's</a></li>
+          <li><a href="shop.html?gender=Unisex">Unisex</a></li>
+          <li><a href="shop.html?badge=Luxury">Luxury</a></li>
+          <li><a href="shop.html?mood=Gift">Gifts</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-title">Help</div>
+        <ul>
+          <li><a href="shop.html">How to Order</a></li>
+          <li><a href="about.html#delivery">Delivery Info</a></li>
+          <li><a href="about.html#returns">Returns</a></li>
+          <li><a href="about.html#faq">FAQ</a></li>
+          <li><a href="about.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer__col" id="contact">
+        <div class="footer__col-title">Find Us</div>
+        <address style="font-style:normal">
+          <p>Nairobi CBD<br/>Nairobi, Kenya</p><br/>
+          <p>Mon – Sat<br/>8:00 AM – 8:00 PM</p><br/>
+          <p class="t-gold">+254 700 000 000</p>
+        </address>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 Qton Perfumes. All rights reserved.</p>
+      <div class="social-links" aria-label="Social media links">
+        <a class="social-link" href="https://instagram.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a class="social-link" href="https://facebook.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        <a class="social-link" href="https://tiktok.com/@qtonperfumes"
+           target="_blank" rel="noopener" aria-label="TikTok">TK</a>
+        <a class="social-link" href="https://x.com/qtonperfumes"
+           target="_blank" rel="noopener" aria-label="X / Twitter">𝕏</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WHATSAPP FAB ── -->
+  <a href="https://wa.me/254700000000?text=Hi%20Qton%20Perfumes!%20I%27d%20like%20to%20inquire%20about%20a%20fragrance."
+     target="_blank" rel="noopener"
+     class="wa-fab" aria-label="Chat with us on WhatsApp">💬</a>
+  <div class="wa-tooltip" aria-hidden="true">Chat with us on WhatsApp</div>
+
+  <!-- ── Visually hidden utility (for screen readers) ── -->
+  <style>
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  </style>
+
+  <!-- ── SCRIPTS (load order matters) ── -->
+  <script src="/Assets/Js/products.js"></script>
+  <script src="/Assets/Js/cart.js"></script>
+  <script src="/Assets/Js/global.js"></script>
+  <script src="/Assets/Js/shop.js"></script>
+
+</body>
+</html>

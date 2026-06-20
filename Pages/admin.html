@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ── SEO: Admin pages should never be indexed ── -->
+  <title>Admin Dashboard | Qton Perfumes</title>
+  <meta name="robots" content="noindex, nofollow"/>
+  <meta name="author" content="Qton Perfumes"/>
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'"/>
+
+  <!-- ── Stylesheets (note the ../ since this file lives in /admin/) ── -->
+  <link rel="stylesheet" href="/Assets/Css/global.css"/>
+  <link rel="stylesheet" href="/Assets/Css/components.css"/>
+  <link rel="stylesheet" href="/Assets/Css/admin.css"/>
+</head>
+<body class="admin-body">
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="toast__dot"></div>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       LOGIN SCREEN
+  ══════════════════════════════════════ -->
+  <div class="login-screen" id="loginScreen">
+    <form class="login-card" onsubmit="attemptLogin(event)">
+      <div class="login-card__logo">QTON</div>
+      <div class="login-card__sub">Perfumes</div>
+      <h1 class="login-card__title">Admin Dashboard</h1>
+
+      <div class="form-group">
+        <label class="form-label" for="adminPassword">Password</label>
+        <input class="form-input" id="adminPassword" type="password"
+               placeholder="Enter admin password" required autofocus
+               aria-required="true"/>
+      </div>
+      <div class="login-card__error" id="loginError">
+        Incorrect password. Please try again.
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--full">Log In</button>
+    </form>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ADMIN SHELL
+  ══════════════════════════════════════ -->
+  <div class="admin-shell" id="adminShell" style="display:none">
+
+    <!-- Mobile overlay -->
+    <div class="admin-overlay" id="adminOverlay" onclick="toggleMobileSidebar()"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin navigation">
+      <div class="admin-sidebar__logo">
+        QTON<span>Admin Dashboard</span>
+      </div>
+
+      <nav class="admin-nav">
+        <button class="admin-nav__item is-active" data-view="dashboard" onclick="switchView('dashboard')">
+          <span class="admin-nav__icon" aria-hidden="true">📊</span> Dashboard
+        </button>
+        <button class="admin-nav__item" data-view="products" onclick="switchView('products')">
+          <span class="admin-nav__icon" aria-hidden="true">🧴</span> Products
+        </button>
+        <button class="admin-nav__item" data-view="orders" onclick="switchView('orders')">
+          <span class="admin-nav__icon" aria-hidden="true">📦</span> Orders
+          <span class="admin-nav__badge" id="ordersBadge" style="display:none">0</span>
+        </button>
+      </nav>
+
+      <div class="admin-sidebar__footer">
+        <a href="../home.html" style="display:block;text-align:center;font-size:var(--text-xs);color:var(--muted);margin-bottom:0.75rem;text-decoration:none;">
+          ← Back to Store
+        </a>
+        <button class="admin-logout" onclick="logout()">Log Out</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+
+      <!-- ══════ DASHBOARD VIEW ══════ -->
+      <section class="admin-view is-active" id="view-dashboard" aria-label="Dashboard overview">
+        <div class="admin-header">
+          <button class="admin-mobile-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle menu">☰</button>
+          <div>
+            <h1 class="admin-header__title">Dashboard</h1>
+            <p class="admin-header__sub">Overview of your store's performance</p>
+          </div>
+        </div>
+
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="stat-card__top">
+              <div class="stat-card__icon" aria-hidden="true">📦</div>
+            </div>
+            <div class="stat-card__value" id="statTotalOrders">0</div>
+            <div class="stat-card__label">Total Orders</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__top">
+              <div class="stat-card__icon" aria-hidden="true">⏳</div>
+            </div>
+            <div class="stat-card__value" id="statPending">0</div>
+            <div class="stat-card__label">Pending Orders</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__top">
+              <div class="stat-card__icon" aria-hidden="true">💰</div>
+            </div>
+            <div class="stat-card__value" id="statRevenue">KES 0</div>
+            <div class="stat-card__label">Total Revenue</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__top">
+              <div class="stat-card__icon" aria-hidden="true">🧴</div>
+            </div>
+            <div class="stat-card__value" id="statProducts">0</div>
+            <div class="stat-card__label">Total Products</div>
+          </div>
+        </div>
+
+        <div class="admin-panel">
+          <div class="admin-panel__header">
+            <span class="admin-panel__title">Recent Orders</span>
+            <button class="admin-btn admin-btn--outline" onclick="switchView('orders')">View All</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th><th>Customer</th><th>Items</th>
+                  <th>Total</th><th>Date</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="recentOrdersList"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ PRODUCTS VIEW ══════ -->
+      <section class="admin-view" id="view-products" aria-label="Manage products">
+        <div class="admin-header">
+          <button class="admin-mobile-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle menu">☰</button>
+          <div>
+            <h1 class="admin-header__title">Products</h1>
+            <p class="admin-header__sub">Manage your fragrance catalogue</p>
+          </div>
+          <button class="admin-btn" onclick="openProductModal()">+ Add Product</button>
+        </div>
+
+        <div class="admin-panel">
+          <div style="padding:1.25rem 1.5rem 0">
+            <div class="admin-toolbar">
+              <input class="admin-search" id="productSearch" type="text"
+                     placeholder="Search products…" oninput="filterProducts()"
+                     aria-label="Search products"/>
+              <select class="admin-filter-select" id="productGenderFilter"
+                      onchange="filterProducts()" aria-label="Filter by gender">
+                <option value="">All Genders</option>
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="Unisex">Unisex</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Product</th><th>Gender</th><th>Scent</th>
+                  <th>Price</th><th>Badge</th><th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ ORDERS VIEW ══════ -->
+      <section class="admin-view" id="view-orders" aria-label="Manage orders">
+        <div class="admin-header">
+          <button class="admin-mobile-toggle" onclick="toggleMobileSidebar()" aria-label="Toggle menu">☰</button>
+          <div>
+            <h1 class="admin-header__title">Orders</h1>
+            <p class="admin-header__sub">View and manage customer orders</p>
+          </div>
+        </div>
+
+        <div class="admin-panel">
+          <div style="padding:1.25rem 1.5rem 0">
+            <div class="admin-toolbar">
+              <select class="admin-filter-select" id="orderStatusFilter"
+                      onchange="filterOrders()" aria-label="Filter by status">
+                <option value="">All Statuses</option>
+                <option value="New">New</option>
+                <option value="Called">Called</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th><th>Customer</th><th>Items</th>
+                  <th>Total</th><th>Date</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PRODUCT ADD/EDIT MODAL
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <div class="modal-card">
+      <div class="modal-card__header">
+        <h2 class="modal-card__title" id="productModalTitle">Add New Product</h2>
+        <button class="modal-card__close" onclick="closeProductModal()" aria-label="Close">✕</button>
+      </div>
+
+      <form id="productForm" onsubmit="saveProduct(event)">
+        <div class="modal-card__body">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="pf-brand">Brand *</label>
+              <input class="form-input" id="pf-brand" type="text" placeholder="e.g. Chanel" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pf-name">Product Name *</label>
+              <input class="form-input" id="pf-name" type="text" placeholder="e.g. Bleu de Chanel" required/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pf-notes">Scent Notes</label>
+            <input class="form-input" id="pf-notes" type="text" placeholder="e.g. Cedar · Citrus · Vetiver"/>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="pf-price">Price (KES) *</label>
+              <input class="form-input" id="pf-price" type="number" placeholder="e.g. 8500" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pf-emoji">Icon (Emoji)</label>
+              <input class="form-input" id="pf-emoji" type="text" placeholder="e.g. 🌸" maxlength="4"/>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="pf-gender">Gender</label>
+              <select class="form-select" id="pf-gender">
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="Unisex">Unisex</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pf-scent">Scent Family</label>
+              <select class="form-select" id="pf-scent">
+                <option value="Fresh">Fresh</option>
+                <option value="Floral">Floral</option>
+                <option value="Woody">Woody</option>
+                <option value="Oriental">Oriental</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="pf-mood">Occasion / Mood</label>
+              <select class="form-select" id="pf-mood">
+                <option value="Date Night">Date Night</option>
+                <option value="Office">Office</option>
+                <option value="Casual">Casual</option>
+                <option value="Evening">Evening</option>
+                <option value="Fresh">Fresh</option>
+                <option value="Luxury">Luxury</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pf-badge">Badge (Optional)</label>
+              <input class="form-input" id="pf-badge" type="text" placeholder="e.g. Bestseller"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pf-description">Description</label>
+            <textarea class="form-textarea" id="pf-description"
+                      placeholder="A short description of the fragrance…"></textarea>
+            <button type="button" class="ai-helper-btn" id="aiGenerateBtn" onclick="generateAIDescription()">
+              ✨ Generate with AI
+            </button>
+          </div>
+
+        </div>
+
+        <div class="modal-card__footer">
+          <button type="button" class="admin-btn admin-btn--outline" onclick="closeProductModal()">Cancel</button>
+          <button type="submit" class="admin-btn">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── SCRIPTS (note ../ path since this file lives in /admin/) ── -->
+  <script src="/Assets/Js/products.js"></script>
+  <script src="/Assets/Js/cart.js"></script>
+  <script src="/Assets/Js/global.js"></script>
+  <script src="/Assets/Js/admin.js"></script>
+
+</body>
+</html>
